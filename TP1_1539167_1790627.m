@@ -60,6 +60,7 @@ for k = 1:50
 end
 M_0_2 = (A_0'*A_0)\A_0'*b_0;
 M_0 = [M_0_2(1,1) M_0_2(2,1) M_0_2(3,1) M_0_2(4,1); M_0_2(5,1) M_0_2(6,1) M_0_2(7,1) M_0_2(8,1); M_0_2(9,1) M_0_2(10,1) M_0_2(11,1) 1];
+clear b_0 M_0_2 A_0
 
 % Matrice de calibration implicite DLT PA20
 A_20 = zeros(100,11);
@@ -78,7 +79,9 @@ end
 %M_20_2 = zeros(11,1);
 M_20_2 = (A_20'*A_20)\A_20'*b_20;
 M_20 = [M_20_2(1,1) M_20_2(2,1) M_20_2(3,1) M_20_2(4,1); M_20_2(5,1) M_20_2(6,1) M_20_2(7,1) M_20_2(8,1); M_20_2(9,1) M_20_2(10,1) M_20_2(11,1) 1];
+clear b_20 M_20_2 A_20
 
+clear billes billes_2D_PA0 billes_2D_PA20 billes_3D
 %% Question 1.2:
 
 % Pour PA0
@@ -163,6 +166,16 @@ end
 clear k
 
 % Créer la matrice du système A.P = b
+
+% Matrice (M_0 ; M_20)
+
+M = [M_0; M_20];
+X = zeros(6,3);
+
+for k = 1:6
+    x = recons(vertebre_PA0(k,:),vertebre_PA20(k,:),M_0,M_20);
+    X(k,:) = x;
+end
 
 
 
