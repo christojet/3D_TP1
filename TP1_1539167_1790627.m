@@ -162,6 +162,8 @@ for k = 1:6,
 end
 clear k
 
+% Créer la matrice du système A.P = b
+
 
 
 
