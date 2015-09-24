@@ -1,0 +1,9 @@
+function erreur = RMS(coord, coord_3D, coord_ideale)
+n = size(coord_ideale);
+N = n(1,1);
+if coord ~= 1 && coord ~= 2 && coord ~= 3
+    error ('Coordonnée inexistante')
+end
+X = (((coord_3D(:,coord) - coord_ideale(:,coord))).^2)./N;
+erreur = sqrt(sum(X));
+end
